@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgovyuvb24cuo"]
+
+[ext_resource type="PackedScene" uid="uid://b1hgk3teil42i" path="res://Nodes/GameManagement/Modes/ModeManager.tscn" id="1_w27dv"]
+[ext_resource type="Script" uid="uid://em7m4duuqbq4" path="res://Nodes/GameManagement/Modes/MainMenu/MainMenuMode.cs" id="2_d2t7t"]
+[ext_resource type="PackedScene" uid="uid://ies3voha442j" path="res://Nodes/MainMenuBG.tscn" id="2_mc1yh"]
+
+[node name="MainMenuMode" instance=ExtResource("1_w27dv")]
+script = ExtResource("2_d2t7t")
+GameMode = 0
+
+[node name="MainMenu" parent="." index="0" instance=ExtResource("2_mc1yh")]

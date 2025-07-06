@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dthgvm3lacxsf"]
+
+[ext_resource type="Script" uid="uid://dc50ytwbcrhj8" path="res://Nodes/GameManagement/Modes/MainGame/MainGameMode.cs" id="1_8neom"]
+[ext_resource type="PackedScene" uid="uid://38kb32cyk0fn" path="res://Nodes/Environment.tscn" id="2_4nwgi"]
+[ext_resource type="PackedScene" uid="uid://hg2qe1q5v4av" path="res://Nodes/Player Character/PlayerCharacter.tscn" id="3_33vhk"]
+
+[node name="MainGameMode" type="Node2D"]
+script = ExtResource("1_8neom")
+
+[node name="Environment" parent="." instance=ExtResource("2_4nwgi")]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_33vhk")]
+z_index = 5
+position = Vector2(242, 95)

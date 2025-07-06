@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://rqqugveoilb"]
+
+[ext_resource type="PackedScene" uid="uid://bhvt5ub2ea0j0" path="res://Nodes/GameManagement/GameManager/GameManager.tscn" id="1_frf35"]
+
+[node name="Main Game" type="Node2D"]
+texture_filter = 1
+
+[node name="GameManager" parent="." node_paths=PackedStringArray("GameModeLookup") instance=ExtResource("1_frf35")]
+GameModeLookup = {
+0: NodePath("MainMenuMode"),
+2: NodePath("InstructionsMode"),
+4: NodePath("MainGameMode")
+}

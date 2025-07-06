@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1hgk3teil42i"]
+
+[ext_resource type="Script" uid="uid://s4rkpulo5l63" path="res://Nodes/GameManagement/Modes/ModeManager.cs" id="1_4ylk5"]
+
+[node name="ModeManager" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_4ylk5")
+GameMode = -1
