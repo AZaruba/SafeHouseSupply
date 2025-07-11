@@ -14,8 +14,6 @@ public partial class GameManager : Node
   {
     GameModeStack = new Stack<GAME_MODE>();
     GameModeStack.Push(GAME_MODE.MAIN_MENU);
-    GD.Print(GameModeLookup.Keys);
-    GD.Print(GameModeLookup.Values);
     GameModeLookup[GAME_MODE.MAIN_MENU].SetProcess(true);
     GameModeLookup[GAME_MODE.MAIN_MENU].Visible = true;
   }
@@ -23,10 +21,11 @@ public partial class GameManager : Node
   public void OnPushGameMode(GAME_MODE nextMode)
   {
     GameModeLookup[GameModeStack.Peek()].SetProcess(false);
+    GameModeLookup[nextMode].SetPhysicsProcess(false);
     GameModeLookup[GameModeStack.Peek()].Visible = false;
-    GD.Print("Pushed: " + nextMode.ToString());
     GameModeStack.Push(nextMode);
     GameModeLookup[nextMode].SetProcess(true);
+    GameModeLookup[nextMode].SetPhysicsProcess(true);
     GameModeLookup[GameModeStack.Peek()].Visible = true;
   }
 
@@ -35,10 +34,11 @@ public partial class GameManager : Node
     if (GameModeStack.TryPop(out GAME_MODE currentMode))
     {
       // handle successful pop
-      GD.Print("Popped: " + currentMode.ToString());
       GameModeLookup[currentMode].SetProcess(false);
+      GameModeLookup[currentMode].SetPhysicsProcess(false);
       GameModeLookup[currentMode].Visible = false;
       GameModeLookup[GameModeStack.Peek()].SetProcess(true);
+      GameModeLookup[GameModeStack.Peek()].SetPhysicsProcess(true);
       GameModeLookup[GameModeStack.Peek()].Visible = true;
     }
   }

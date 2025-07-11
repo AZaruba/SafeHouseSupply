@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dthgvm3lacxsf"]
+[gd_scene load_steps=6 format=3 uid="uid://dthgvm3lacxsf"]
 
 [ext_resource type="Script" uid="uid://dc50ytwbcrhj8" path="res://Nodes/GameManagement/Modes/MainGame/MainGameMode.cs" id="1_8neom"]
 [ext_resource type="PackedScene" uid="uid://38kb32cyk0fn" path="res://Nodes/Environment.tscn" id="2_4nwgi"]
 [ext_resource type="PackedScene" uid="uid://hg2qe1q5v4av" path="res://Nodes/Player Character/PlayerCharacter.tscn" id="3_33vhk"]
+[ext_resource type="PackedScene" uid="uid://b7j2ejc7v1qup" path="res://Nodes/EnemyAgent/EnemyAgent.tscn" id="4_csa7x"]
+[ext_resource type="PackedScene" uid="uid://664mvjgg11u0" path="res://Nodes/ScoreDisplay/ScoreDisplay.tscn" id="5_0ptf3"]
 
 [node name="MainGameMode" type="Node2D"]
 script = ExtResource("1_8neom")
@@ -12,3 +14,8 @@ script = ExtResource("1_8neom")
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_33vhk")]
 z_index = 5
 position = Vector2(242, 95)
+
+[node name="TestEnemyAgent" parent="." instance=ExtResource("4_csa7x")]
+position = Vector2(144, 120)
+
+[node name="ScoreDisplay" parent="." instance=ExtResource("5_0ptf3")]

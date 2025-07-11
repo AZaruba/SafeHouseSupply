@@ -1,0 +1,127 @@
+[gd_scene load_steps=12 format=3 uid="uid://b7j2ejc7v1qup"]
+
+[ext_resource type="Texture2D" uid="uid://bufpw1uu00m4" path="res://Assets/Characters/EnemyAgent/EnemyAgen_Sheett.png" id="1_2eu3o"]
+[ext_resource type="Script" uid="uid://rjg20wi6u0gp" path="res://Nodes/EnemyAgent/EnemyAgent.cs" id="1_qm3hi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2eu3o"]
+size = Vector2(15.5, 15.5)
+
+[sub_resource type="Animation" id="Animation_qm3hi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4vphv"]
+_data = {
+&"RESET": SubResource("Animation_qm3hi")
+}
+
+[sub_resource type="Animation" id="Animation_8dai2"]
+resource_name = "WalkLeft"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_y4uuc"]
+resource_name = "WalkRight"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_u8saj"]
+resource_name = "WalkUp"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f05qo"]
+resource_name = "WalkDown"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u8saj"]
+_data = {
+&"WalkDown": SubResource("Animation_f05qo"),
+&"WalkLeft": SubResource("Animation_8dai2"),
+&"WalkRight": SubResource("Animation_y4uuc"),
+&"WalkUp": SubResource("Animation_u8saj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qm3hi"]
+size = Vector2(8, 8)
+
+[node name="EnemyAgent" type="CharacterBody2D" node_paths=PackedStringArray("AnimPlayer", "DetectPlayerCast")]
+motion_mode = 1
+script = ExtResource("1_qm3hi")
+ChaseVelocity = 60.0
+AnimPlayer = NodePath("AnimationPlayer")
+DetectPlayerCast = NodePath("ShapeCast2D")
+MaxVisionDistance = 64.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_2eu3o")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2eu3o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4vphv"),
+&"EnemyAgent": SubResource("AnimationLibrary_u8saj")
+}
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_qm3hi")
+target_position = Vector2(0, 0)
+collision_mask = 17

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://664mvjgg11u0"]
+
+[ext_resource type="Theme" uid="uid://d18me3pmndrou" path="res://Assets/Fonts/MonoFontTheme.tres" id="1_8ystl"]
+[ext_resource type="Script" uid="uid://cs7b1fhq1by4e" path="res://Nodes/ScoreDisplay/ScoreDisplay.cs" id="2_4tl6g"]
+
+[node name="ScoreDisplay" type="RichTextLabel"]
+offset_right = 480.0
+offset_bottom = 8.0
+theme = ExtResource("1_8ystl")
+text = "TEST TEXT"
+script = ExtResource("2_4tl6g")

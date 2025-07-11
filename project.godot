@@ -87,3 +87,8 @@ Hide={
 2d_physics/layer_2="Doors"
 2d_physics/layer_3="Spotlights"
 2d_physics/layer_4="EnemyAgents"
+2d_physics/layer_5="Player"
+
+[rendering]
+
+2d/snap/snap_2d_transforms_to_pixel=true

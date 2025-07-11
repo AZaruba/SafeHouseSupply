@@ -13,8 +13,8 @@ public partial class ModeManager : Node2D
 
   public override void _Ready()
   {
-    GD.Print("INIT MODE MANAGER");
     SetProcess(false);
+    SetPhysicsProcess(false);
     Visible = false;
   }
 
