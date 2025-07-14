@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class EnemyAgent : CharacterBody2D
+public partial class EnemyAgent : CharacterBody2D, IGameEntity
 {
   [Export] private float ChaseVelocity;
   [Export] private AnimationPlayer AnimPlayer;
@@ -9,6 +9,7 @@ public partial class EnemyAgent : CharacterBody2D
 
   private EnemyData data;
   private StateMachine stateMachine;
+  private Vector2 StartPosition;
 
   public override void _Ready()
   {
@@ -33,6 +34,7 @@ public partial class EnemyAgent : CharacterBody2D
 
     data = new EnemyData(PatrolInstructions, ChaseVelocity);
     data.Position = Position;
+    StartPosition = Position;
     stateMachine = new StateMachine();
     stateMachine.AddState(StateReference.PATROLING, new EnemyPatroling(StateReference.PATROLING, ref data));
     stateMachine.AddState(StateReference.CHASING, new EnemyChasing(StateReference.CHASING, ref data));
@@ -70,10 +72,20 @@ public partial class EnemyAgent : CharacterBody2D
     {
       stateMachine.UpdateState(StateAction.PATROL);
     }
+
+    if (GetWallNormal().Normalized() * -1 == data.MotionDirection)
+    {
+      stateMachine.UpdateState(StateAction.STOP);
+    }
   }
 
   private void ProcessUpdate()
   {
+    if (IsPlayerColliding())
+    {
+      // Send Signal
+      MainGameMode.CallSignal(MainGameMode.SignalName.PlayerHit);
+    }
     stateMachine.Act();
     UpdateAnimator();
 
@@ -117,8 +129,27 @@ public partial class EnemyAgent : CharacterBody2D
     return false;
   }
 
+  private bool IsPlayerColliding()
+  {
+    for (int i = 0; i < GetSlideCollisionCount(); i++)
+    {
+      KinematicCollision2D col = GetSlideCollision(i);
+      if (col.GetCollider().GetInstanceId() == PlayerCharacter.PlayerId)
+      {
+        SetPhysicsProcess(false);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void OnReset()
+  {
+    _Ready();
+  }
+
   private void DebugInfo()
   {
-    ScoreDisplay.WriteString(data.ReturnPositions.Count.ToString());
+    //ScoreDisplay.WriteString(stateMachine.GetCurrentState().ToString());
   }
 }

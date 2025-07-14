@@ -1,0 +1,59 @@
+{
+  "Time": 44,
+  "AgentName": "Samuel Pescatore",
+  "Agents": [
+    {
+      "StartPosition" : {
+        "X": 144,
+        "Y": 120
+      },
+      "PatrolInstructions" : [
+        {
+          "TargetPosition": {
+            "X": 32,
+            "Y": 120
+          },
+          "FacingDirection": "Right",
+          "Speed": 40,
+          "WaitTime": 1
+        },
+        {
+          "TargetPosition": {
+            "X": 144,
+            "Y": 120
+          },
+          "FacingDirection": "Left",
+          "Speed": 40,
+          "WaitTime": 1
+        }
+      ]
+    }
+  ],
+  "Items": [
+    {
+      "Location" : "BANK",
+      "Name": "Passport",
+      "Description": "Agent is traveling internationally, we've procured a fake passport to hide his tracks.",
+      "Type": "Need"
+    },
+    {
+      "Location" : "TOOLS",
+      "Name": "Lockpicking Kit",
+      "Description": "Agent had to leave infiltration tools behind. Needs new tools for his next mission.",
+      "Type": "Need"
+    },
+    {
+      "Location" : "TAILOR",
+      "Name": "Tactical Turtleneck",
+      "Description": "Make sure it's black, he has to be stealthy.",
+      "Type": "Need"
+    },
+    {
+      "Location" : "GROCER",
+      "Name": "Spicy Chicken Sandwich",
+      "Description": "Agent has been surviving on field rations for a few weeks and desperately wants some flavor.",
+      "Type": "Want"
+    }
+  ],
+  "MissionDescription": "Agent is traveling internationally, we've procured a fake passport to hide his tracks. He also needs a lockpick and a black turtleneck for an infiltration mission.\nHe's been persisting on rations for weeks and desperately wants some flavor."
+}

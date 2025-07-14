@@ -1,7 +1,8 @@
 using Godot;
 using System;
+using System.Linq.Expressions;
 
-public partial class PlayerCharacter : CharacterBody2D
+public partial class PlayerCharacter : CharacterBody2D, IGameEntity
 {
 
   public static ulong PlayerId;
@@ -12,6 +13,8 @@ public partial class PlayerCharacter : CharacterBody2D
 
   private PlayerData data;
 
+  private Vector2 StartPosition;
+
   [Export] private float MotionVelocity;
   [Export] private AnimationPlayer AnimPlayer;
 
@@ -21,6 +24,8 @@ public partial class PlayerCharacter : CharacterBody2D
     {
       MotionVelocity = MotionVelocity
     };
+
+    StartPosition = Position;
 
     PlayerId = this.GetInstanceId();
     stateMachine = new StateMachine();
@@ -41,12 +46,20 @@ public partial class PlayerCharacter : CharacterBody2D
     ProcessInput();
     ProcessUpdate();
     PlayerState = stateMachine.GetCurrentState();
+    DebugInfo();
   }
 
   private void ProcessUpdate()
   {
     stateMachine.Act();
-    AnimPlayer.Play("PlayerAnim/" + data.CurrentAnimation);
+    if (stateMachine.GetCurrentState() == StateReference.IDLE)
+    {
+      AnimPlayer.Pause();
+    }
+    else
+    {
+      AnimPlayer.Play("PlayerAnim/" + data.CurrentAnimation);
+    }
 
     Velocity = data.MotionDirection * data.MotionVelocity;
     MoveAndSlide();
@@ -80,5 +93,14 @@ public partial class PlayerCharacter : CharacterBody2D
     {
       stateMachine.UpdateState(StateAction.HIDING_TRANSITION_END);
     }
+  }
+
+  public void OnReset()
+  {
+    Position = StartPosition;
+  }
+
+  private void DebugInfo()
+  {
   }
 }

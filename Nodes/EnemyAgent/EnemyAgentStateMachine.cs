@@ -133,7 +133,7 @@ public class EnemyChasing : EnemyState
 
     float dist = Mathf.Round((projectedPPos - projectedEPos).Length());
 
-    ed.ChaseTarget = ed.Position + direction * dist;
+    ed.ChaseTarget = (ed.Position + direction * dist).Round();
   }
 
   public override void Act()
@@ -142,12 +142,17 @@ public class EnemyChasing : EnemyState
     ed.FacingDirection = ed.MotionDirection;
     ed.MotionVelocity = ed.ChaseVelocity;
 
+    ScoreDisplay.WriteString(ed.ChaseTarget.ToString());
     base.Act();
   }
 
   public override void Enter()
   {
     CalculateChaseTarget();
+    ed.MotionDirection = (ed.ChaseTarget.Round() - ed.Position.Round()).Normalized();
+    ed.FacingDirection = ed.MotionDirection;
+    ed.MotionVelocity = ed.ChaseVelocity;
+
     ed.ReturnPositions.Push(ed.Position.Round());
     base.Enter();
   }
@@ -248,7 +253,6 @@ public class EnemyReturning : EnemyState
   private bool HasReachedDestination(Vector2 target)
   {
     Vector2 Destination = target;
-    ScoreDisplay.WriteString("Comparing " + ed.Position.Round() + " and " + Destination.Round());
     if (ed.Position.Round() == Destination.Round())
     {
       return true;
@@ -265,7 +269,6 @@ public class EnemyReturning : EnemyState
 
       if (HasReachedDestination(returnTarget))
       {
-        GD.Print("Reached Destination");
         ed.Position = returnTarget;
         ed.ReturnPositions.Pop();
       }

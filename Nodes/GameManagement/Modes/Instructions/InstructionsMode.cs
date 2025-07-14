@@ -8,7 +8,7 @@ public partial class InstructionsMode : ModeManager
   {
     if (Input.IsActionJustPressed("Confirm"))
     {
-      EmitSignal(ModeManager.SignalName.PushGameMode, (int)GAME_MODE.GAMEPLAY);
+      EmitSignal(ModeManager.SignalName.PushGameMode, (int)GAME_MODE.LEVEL_INTRO_SCREEN);
     }
     if (Input.IsActionJustPressed("Cancel"))
     {

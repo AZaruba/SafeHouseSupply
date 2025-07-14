@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dthgvm3lacxsf"]
+[gd_scene load_steps=7 format=3 uid="uid://dthgvm3lacxsf"]
 
 [ext_resource type="Script" uid="uid://dc50ytwbcrhj8" path="res://Nodes/GameManagement/Modes/MainGame/MainGameMode.cs" id="1_8neom"]
 [ext_resource type="PackedScene" uid="uid://38kb32cyk0fn" path="res://Nodes/Environment.tscn" id="2_4nwgi"]
 [ext_resource type="PackedScene" uid="uid://hg2qe1q5v4av" path="res://Nodes/Player Character/PlayerCharacter.tscn" id="3_33vhk"]
 [ext_resource type="PackedScene" uid="uid://b7j2ejc7v1qup" path="res://Nodes/EnemyAgent/EnemyAgent.tscn" id="4_csa7x"]
 [ext_resource type="PackedScene" uid="uid://664mvjgg11u0" path="res://Nodes/ScoreDisplay/ScoreDisplay.tscn" id="5_0ptf3"]
+[ext_resource type="PackedScene" uid="uid://drx6sxwcjebnm" path="res://Nodes/Timer/Timer.tscn" id="6_q2tes"]
 
 [node name="MainGameMode" type="Node2D"]
+z_index = 10
 script = ExtResource("1_8neom")
+GameMode = 4
 
 [node name="Environment" parent="." instance=ExtResource("2_4nwgi")]
 
@@ -19,3 +22,8 @@ position = Vector2(242, 95)
 position = Vector2(144, 120)
 
 [node name="ScoreDisplay" parent="." instance=ExtResource("5_0ptf3")]
+
+[node name="Timer" parent="." instance=ExtResource("6_q2tes")]
+position = Vector2(328, 0)
+
+[connection signal="PlayerHit" from="." to="." method="OnPlayerHit"]

@@ -22,4 +22,9 @@ public partial class ModeManager : Node2D
   {
     // no processing
   }
+
+  public virtual void OnModeStart()
+  {
+    // none 
+  }
 }

@@ -5,9 +5,4 @@
 [node name="Main Game" type="Node2D"]
 texture_filter = 1
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("GameModeLookup") instance=ExtResource("1_frf35")]
-GameModeLookup = {
-0: NodePath("MainMenuMode"),
-2: NodePath("InstructionsMode"),
-4: NodePath("MainGameMode")
-}
+[node name="GameManager" parent="." instance=ExtResource("1_frf35")]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://drx6sxwcjebnm"]
+
+[ext_resource type="Theme" uid="uid://d18me3pmndrou" path="res://Assets/Fonts/MonoFontTheme.tres" id="1_b0n7n"]
+[ext_resource type="Script" uid="uid://cjnpua141xhyk" path="res://Nodes/Timer/Timer.cs" id="1_bxupo"]
+
+[node name="Timer" type="Node2D" node_paths=PackedStringArray("DisplayLabel")]
+script = ExtResource("1_bxupo")
+DisplayLabel = NodePath("Time")
+
+[node name="Time" type="RichTextLabel" parent="."]
+offset_left = 112.0
+offset_right = 136.0
+offset_bottom = 8.0
+theme = ExtResource("1_b0n7n")
+text = "120"
+
+[node name="Label" type="RichTextLabel" parent="."]
+offset_right = 136.0
+offset_bottom = 8.0
+theme = ExtResource("1_b0n7n")
+text = "TIL' MORNING:"
