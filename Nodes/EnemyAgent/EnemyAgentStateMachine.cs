@@ -142,7 +142,6 @@ public class EnemyChasing : EnemyState
     ed.FacingDirection = ed.MotionDirection;
     ed.MotionVelocity = ed.ChaseVelocity;
 
-    ScoreDisplay.WriteString(ed.ChaseTarget.ToString());
     base.Act();
   }
 

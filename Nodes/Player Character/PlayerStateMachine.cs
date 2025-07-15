@@ -9,6 +9,7 @@ public class PlayerData
     MotionVelocity = 0;
     CurrentAnimation = "Idle";
     delta = 0;
+    IsOnDoor = false;
   }
   public Vector2 MotionDirection;
   public float MotionVelocity;
@@ -16,6 +17,7 @@ public class PlayerData
   public float delta; // comes from engine
 
   public string CurrentAnimation;
+  public bool IsOnDoor;
 }
 
 public class PlayerState : State
@@ -81,6 +83,8 @@ public class PlayerMoving : PlayerState
         return StateReference.IDLE;
       case StateAction.START_HIDING:
         return StateReference.HIDING;
+      case StateAction.ENTER:
+        return StateReference.SHOPPING;
       default:
         return ID;
     }
@@ -118,6 +122,8 @@ public class PlayerIdle : PlayerState
         return StateReference.MOVING;
       case StateAction.START_HIDING:
         return StateReference.HIDING;
+      case StateAction.ENTER:
+        return StateReference.SHOPPING;
       default:
         return ID;
     }
@@ -228,6 +234,41 @@ public class PlayerUnhiding : PlayerState
     switch (action)
     {
       case StateAction.HIDING_TRANSITION_END:
+        return StateReference.IDLE;
+      default:
+        return ID;
+    }
+  }
+}
+
+public class PlayerShopping : PlayerState
+{
+  public PlayerShopping(StateReference id, ref PlayerData data) : base(id, ref data)
+  {
+
+  }
+
+  public override void Act()
+  {
+    pd.MotionDirection = Vector2.Zero;
+  }
+
+  public override void Enter()
+  {
+    pd.CurrentAnimation = "Shopping";
+    base.Enter();
+  }
+
+  public override void Exit()
+  {
+    base.Exit();
+  }
+
+  public override StateReference Transition(StateAction action)
+  {
+    switch (action)
+    {
+      case StateAction.ENTER:
         return StateReference.IDLE;
       default:
         return ID;

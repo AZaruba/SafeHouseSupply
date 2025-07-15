@@ -12,11 +12,11 @@ z_index = 10
 script = ExtResource("1_8neom")
 GameMode = 4
 
-[node name="Environment" parent="." instance=ExtResource("2_4nwgi")]
-
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_33vhk")]
 z_index = 5
 position = Vector2(242, 95)
+
+[node name="Environment" parent="." instance=ExtResource("2_4nwgi")]
 
 [node name="TestEnemyAgent" parent="." instance=ExtResource("4_csa7x")]
 position = Vector2(144, 120)

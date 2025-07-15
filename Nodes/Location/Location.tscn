@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3y6sgx8tqrah"]
+
+[ext_resource type="Texture2D" uid="uid://bi0drqjiqbhyo" path="res://Assets/Environments/ShopDoor.png" id="1_70jah"]
+[ext_resource type="Script" uid="uid://dm5iwm37d6gii" path="res://Nodes/Location/Location.cs" id="1_ntwuy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70jah"]
+size = Vector2(16, 16)
+
+[node name="Location" type="Node2D" node_paths=PackedStringArray("CollisionArea", "Sprite")]
+script = ExtResource("1_ntwuy")
+CollisionArea = NodePath("Area2D")
+Sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_70jah")
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_70jah")

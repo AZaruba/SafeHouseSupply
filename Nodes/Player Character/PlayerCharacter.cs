@@ -17,6 +17,8 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
 
   [Export] private float MotionVelocity;
   [Export] private AnimationPlayer AnimPlayer;
+  [Export] private CollisionShape2D Collider;
+  [Export] private Sprite2D Sprite;
 
   public override void _Ready()
   {
@@ -34,6 +36,7 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
     stateMachine.AddState(StateReference.HIDING, new PlayerHiding(StateReference.HIDING, ref data));
     stateMachine.AddState(StateReference.HIDDEN, new PlayerHidden(StateReference.HIDDEN, ref data));
     stateMachine.AddState(StateReference.UNHIDING, new PlayerUnhiding(StateReference.UNHIDING, ref data));
+    stateMachine.AddState(StateReference.SHOPPING, new PlayerShopping(StateReference.SHOPPING, ref data));
 
     base._Ready();
   }
@@ -42,11 +45,12 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
   {
     // if not deactivated
 
+    DebugInfo();
     data.delta = (float)delta;
     ProcessInput();
     ProcessUpdate();
     PlayerState = stateMachine.GetCurrentState();
-    DebugInfo();
+    data.IsOnDoor = false;
   }
 
   private void ProcessUpdate()
@@ -60,6 +64,8 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
     {
       AnimPlayer.Play("PlayerAnim/" + data.CurrentAnimation);
     }
+
+    Sprite.Visible = stateMachine.GetCurrentState() != StateReference.SHOPPING;
 
     Velocity = data.MotionDirection * data.MotionVelocity;
     MoveAndSlide();
@@ -93,6 +99,21 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
     {
       stateMachine.UpdateState(StateAction.HIDING_TRANSITION_END);
     }
+
+    if (Input.IsActionJustPressed("Open") && data.IsOnDoor)
+    {
+      stateMachine.UpdateState(StateAction.ENTER);
+    }
+  }
+
+  public void SetIsOnDoor(bool value)
+  {
+    data.IsOnDoor = value;
+  }
+
+  private void CheckForDoorAndHide()
+  {
+
   }
 
   public void OnReset()
@@ -102,5 +123,6 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
 
   private void DebugInfo()
   {
+    ScoreDisplay.WriteString(data.IsOnDoor.ToString());
   }
 }

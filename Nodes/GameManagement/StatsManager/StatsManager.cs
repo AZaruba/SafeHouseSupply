@@ -1,4 +1,3 @@
-using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -14,6 +13,8 @@ public partial class HouseItem : GodotObject
   public string Name;
   public string Description;
   public string Type;
+
+  public bool Collected = false;
 }
 
 public partial class LevelData : GodotObject
@@ -105,5 +106,16 @@ public partial class StatsManager : Node
     Output += "\n\n" + data.MissionDescription;
 
     return Output;
+  }
+
+  public static void OnItemCollected(string Location)
+  {
+    foreach (HouseItem item in Instance.CurrentLevelData.Items)
+    {
+      if (item.Location.Equals(Location))
+      {
+        item.Collected = true;
+      }
+    }
   }
 }

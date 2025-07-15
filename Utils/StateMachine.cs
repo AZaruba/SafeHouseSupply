@@ -78,6 +78,7 @@ public enum StateAction {
   START_HIDING,
   HIDING_TRANSITION_END,
   STOP_HIDING,
+  ENTER,
   GET_CAUGHT,
 
   // enemy actions
@@ -95,6 +96,7 @@ public enum StateReference {
   HIDING,
   HIDDEN,
   UNHIDING,
+  SHOPPING,
   CAUGHT,
   INACTIVE,
 
