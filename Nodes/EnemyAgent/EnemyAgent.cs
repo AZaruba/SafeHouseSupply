@@ -2,12 +2,12 @@ using Godot;
 
 public partial class EnemyAgent : CharacterBody2D, IGameEntity
 {
-  [Export] private float ChaseVelocity;
+  [Export] public float ChaseVelocity;
   [Export] private AnimationPlayer AnimPlayer;
   [Export] private ShapeCast2D DetectPlayerCast;
   [Export] private float MaxVisionDistance;
 
-  private EnemyData data;
+  public EnemyData data;
   private StateMachine stateMachine;
   private Vector2 StartPosition;
 
@@ -15,26 +15,8 @@ public partial class EnemyAgent : CharacterBody2D, IGameEntity
   {
     base._Ready();
 
-    // Load Test Instructions
-    AgentInstruction[] PatrolInstructions =
-    [
-      new AgentInstruction(
-        new Vector2(32, 120),
-        Vector2.Left,
-        40,
-        1
-      ),
-      new AgentInstruction(
-        new Vector2(144, 120),
-        Vector2.Right,
-        40,
-        1
-      ),
-    ];
-
-    data = new EnemyData(PatrolInstructions, ChaseVelocity);
-    data.Position = Position;
     StartPosition = Position;
+    data.Position = Position;
     stateMachine = new StateMachine();
     stateMachine.AddState(StateReference.PATROLING, new EnemyPatroling(StateReference.PATROLING, ref data));
     stateMachine.AddState(StateReference.CHASING, new EnemyChasing(StateReference.CHASING, ref data));
@@ -123,7 +105,8 @@ public partial class EnemyAgent : CharacterBody2D, IGameEntity
       GodotObject collisionResult = DetectPlayerCast.GetCollider(0);
       if (collisionResult != null && collisionResult.GetInstanceId() == PlayerCharacter.PlayerId)
       {
-        return PlayerCharacter.PlayerState != StateReference.HIDDEN;
+        return PlayerCharacter.PlayerState != StateReference.HIDDEN &&
+         PlayerCharacter.PlayerState != StateReference.SHOPPING;
       }
     }
     return false;

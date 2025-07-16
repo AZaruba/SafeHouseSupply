@@ -93,6 +93,7 @@ Hide={
 2d_physics/layer_3="Spotlights"
 2d_physics/layer_4="EnemyAgents"
 2d_physics/layer_5="Player"
+2d_physics/layer_6="PlayerToEnemy"
 
 [rendering]
 

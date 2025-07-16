@@ -68,7 +68,6 @@ public partial class GameManager : Node
 // TODO programmatically DELETE the nodes when we pop them (queue_free is our friend here)
   public void OnPopGameMode()
   {
-    GD.Print("Pop it");
     if (GameModeStack.TryPop(out GAME_MODE currentMode))
     {
       // handle successful pop

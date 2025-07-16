@@ -5,6 +5,7 @@ public partial class MainGameMode : ModeManager
 {
   [Signal]
   public delegate void PlayerHitEventHandler();
+  [Export] public PackedScene EnemyAgentScene;
 
   public static MainGameMode instance;
 
@@ -18,6 +19,8 @@ public partial class MainGameMode : ModeManager
     instance = this;
     base._Ready();
 
+    AddLevelEnemies();
+
     foreach (Node child in GetChildren())
     {
       if (child is IGameEntity)
@@ -25,6 +28,19 @@ public partial class MainGameMode : ModeManager
         child.SetPhysicsProcess(false);
         child.SetProcess(false);
       }
+    }
+  }
+
+  private void AddLevelEnemies()
+  {
+    LevelEnemyData[] initData = StatsManager.GetCurrentLevelEnemyData();
+    foreach (LevelEnemyData enemyData in initData)
+    {
+      EnemyAgent newAgent = ResourceLoader.Load<PackedScene>("res://Nodes/EnemyAgent/EnemyAgent.tscn").Instantiate<EnemyAgent>();
+      EnemyData newAgentData = new(enemyData.PatrolInstructions, newAgent.ChaseVelocity);
+      newAgent.data = newAgentData;
+      newAgent.Position = enemyData.StartPosition;
+      AddChild(newAgent);
     }
   }
 

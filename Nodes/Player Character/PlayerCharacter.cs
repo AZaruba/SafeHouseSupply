@@ -109,10 +109,12 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
       if (stateMachine.GetCurrentState() != StateReference.SHOPPING)
       {
         EmitSignal(SignalName.PlayerExitShop);
+        SetCollisionLayerValue(6, true);
       }
       else
       {
         EmitSignal(SignalName.PlayerEnterShop);
+        SetCollisionLayerValue(6, false);
       }
     }
   }
@@ -135,6 +137,6 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
 
   private void DebugInfo()
   {
-    ScoreDisplay.WriteString(data.IsOnDoor.ToString());
+    ScoreDisplay.WriteString(GetCollisionLayerValue(5).ToString());
   }
 }

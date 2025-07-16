@@ -13,7 +13,7 @@
             "X": 32,
             "Y": 120
           },
-          "FacingDirection": "Right",
+          "FacingDirection": "Left",
           "Speed": 40,
           "WaitTime": 1
         },
@@ -21,6 +21,32 @@
           "TargetPosition": {
             "X": 144,
             "Y": 120
+          },
+          "FacingDirection": "Right",
+          "Speed": 40,
+          "WaitTime": 1
+        }
+      ]
+    },
+    {
+      "StartPosition" : {
+        "X": 32,
+        "Y": 72
+      },
+      "PatrolInstructions" : [
+        {
+          "TargetPosition": {
+            "X": 144,
+            "Y": 72
+          },
+          "FacingDirection": "Right",
+          "Speed": 40,
+          "WaitTime": 1
+        },
+        {
+          "TargetPosition": {
+            "X": 32,
+            "Y": 72
           },
           "FacingDirection": "Left",
           "Speed": 40,

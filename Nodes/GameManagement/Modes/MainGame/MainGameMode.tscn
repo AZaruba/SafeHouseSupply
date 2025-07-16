@@ -10,16 +10,14 @@
 [node name="MainGameMode" type="Node2D"]
 z_index = 10
 script = ExtResource("1_8neom")
+EnemyAgentScene = ExtResource("4_csa7x")
 GameMode = 4
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_33vhk")]
 z_index = 5
-position = Vector2(242, 95)
+position = Vector2(242, 96)
 
 [node name="Environment" parent="." instance=ExtResource("2_4nwgi")]
-
-[node name="TestEnemyAgent" parent="." instance=ExtResource("4_csa7x")]
-position = Vector2(144, 120)
 
 [node name="ScoreDisplay" parent="." instance=ExtResource("5_0ptf3")]
 

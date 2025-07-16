@@ -101,7 +101,7 @@ size = Vector2(8, 8)
 
 [node name="EnemyAgent" type="CharacterBody2D" node_paths=PackedStringArray("AnimPlayer", "DetectPlayerCast")]
 collision_layer = 8
-collision_mask = 17
+collision_mask = 33
 motion_mode = 1
 script = ExtResource("1_qm3hi")
 ChaseVelocity = 60.0
