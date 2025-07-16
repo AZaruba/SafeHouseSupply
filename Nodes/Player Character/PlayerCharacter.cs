@@ -20,6 +20,9 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
   [Export] private CollisionShape2D Collider;
   [Export] private Sprite2D Sprite;
 
+  [Signal] public delegate void PlayerEnterShopEventHandler();
+  [Signal] public delegate void PlayerExitShopEventHandler();
+
   public override void _Ready()
   {
     data = new PlayerData
@@ -103,12 +106,21 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
     if (Input.IsActionJustPressed("Open") && data.IsOnDoor)
     {
       stateMachine.UpdateState(StateAction.ENTER);
+      if (stateMachine.GetCurrentState() != StateReference.SHOPPING)
+      {
+        EmitSignal(SignalName.PlayerExitShop);
+      }
+      else
+      {
+        EmitSignal(SignalName.PlayerEnterShop);
+      }
     }
   }
 
   public void SetIsOnDoor(bool value)
   {
     data.IsOnDoor = value;
+
   }
 
   private void CheckForDoorAndHide()

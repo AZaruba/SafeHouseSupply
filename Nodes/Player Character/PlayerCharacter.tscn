@@ -83,6 +83,10 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_d3axr"]
+resource_name = "Shopping"
+loop_mode = 1
+
 [sub_resource type="Animation" id="Animation_uasl0"]
 resource_name = "Unhide"
 length = 0.4
@@ -166,10 +170,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [4, 5]
 }
-
-[sub_resource type="Animation" id="Animation_d3axr"]
-resource_name = "Shopping"
-loop_mode = 1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bhd8k"]
 _data = {
