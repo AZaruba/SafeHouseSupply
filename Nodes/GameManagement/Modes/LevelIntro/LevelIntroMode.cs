@@ -26,7 +26,7 @@ public partial class LevelIntroMode : ModeManager
   public override void OnModeStart()
   {
     // Load Current Level Data
-    StatsManager.LoadLevel("Level1");
+    StatsManager.LoadLevel(StatsManager.Instance.CurrentLevel);
     TextDisplay.Text = StatsManager.WriteLevelData();
   }
 }

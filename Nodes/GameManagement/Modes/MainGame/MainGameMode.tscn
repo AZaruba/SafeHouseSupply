@@ -15,7 +15,7 @@ GameMode = 4
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_33vhk")]
 z_index = 5
-position = Vector2(242, 96)
+position = Vector2(240, 160)
 
 [node name="Environment" parent="." instance=ExtResource("2_4nwgi")]
 

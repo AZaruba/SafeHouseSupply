@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -22,6 +22,7 @@ public partial class LevelData : GodotObject
 {
   public float Time;
   public string AgentName;
+  public string NextLevel;
   public Array<LevelEnemyData> EnemyInfo;
   public Array<HouseItem> Items;
 
@@ -31,23 +32,38 @@ public partial class LevelData : GodotObject
 
 public partial class StatsManager : Node
 {
+  public static readonly Dictionary<LocationName, string> NameLookup = new Dictionary<LocationName, string> {
+    {LocationName.NONE,"None"},
+    {LocationName.SAFE_HOUSE, "SafeHouse"},
+    {LocationName.BANK, "BANK"},
+    {LocationName.TOOLS,"TOOLS"},
+    {LocationName.TAILOR,"TAILOR"},
+    {LocationName.GROCERY,"GROCER"},
+    {LocationName.PHARMACY,"PHARMACY"},
+    {LocationName.GIFTS,"GIFTS"}
+  };
+
   public static StatsManager Instance;
 
-  public string CurrentLevel;
+  public string CurrentLevel = "Level1";
   public LevelData CurrentLevelData;
+
+  public bool IsComplete = false;
 
   public override void _Ready()
   {
     Instance = this;
+    Instance.IsComplete = false;
   }
 
   public static void LoadLevel(string LevelName)
   {
+    GD.Print("attempting to load " + LevelName);
     if (!FileAccess.FileExists("res://Assets/LevelData/" + LevelName + ".json"))
     {
       // 
     }
-    using FileAccess levelFile = FileAccess.Open("res://Assets/LevelData/Level1.json", FileAccess.ModeFlags.Read);
+    using FileAccess levelFile = FileAccess.Open("res://Assets/LevelData/" + LevelName + ".json", FileAccess.ModeFlags.Read);
     Json jsonResult = new();
     string jsonString = levelFile.GetAsText();
     Error result = jsonResult.Parse(jsonString);
@@ -137,6 +153,7 @@ public partial class StatsManager : Node
     {
       Time = (float)dict["Time"],
       AgentName = dict["AgentName"].AsString(),
+      NextLevel = dict["NextLevel"].AsString(),
       EnemyInfo = enemyInfo,
       Items = houseItems,
       MissionDescription = dict["MissionDescription"].AsString()
@@ -152,10 +169,12 @@ public partial class StatsManager : Node
 
     Output += "Agent:" + data.AgentName;
     Output += "\n\nNeeds: ";
+    bool listingWants = false;
     foreach (HouseItem item in data.Items)
     {
-      if (item.Type == "Want")
+      if (item.Type == "Want" && !listingWants)
       {
+        listingWants = true;
         Output += "\n\nWants:";
       }
       Output += "\n\t- " + item.Name + "\n\t\tFind at " + item.Location;
@@ -166,13 +185,40 @@ public partial class StatsManager : Node
     return Output;
   }
 
-  public static void OnItemCollected(string Location)
+  public static bool IsLevelComplete()
   {
     foreach (HouseItem item in Instance.CurrentLevelData.Items)
     {
-      if (item.Location.Equals(Location))
+      GD.Print(item.Name + " found: " + item.Collected);
+      if (item.Type.Equals("Need") && !item.Collected)
       {
-        item.Collected = true;
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public static void OnShopEntered(int LocationID)
+  {
+    if (LocationID == (int)LocationName.SAFE_HOUSE)
+    {
+      GD.Print("Completing");
+      if (IsLevelComplete())
+      {
+        GD.Print("Level Finished!");
+        Instance.IsComplete = true;
+        Instance.CurrentLevel = Instance.CurrentLevelData.NextLevel;
+      }
+      return;
+    }
+    if (NameLookup.TryGetValue((LocationName)LocationID, out string lname))
+    {
+      foreach (HouseItem item in Instance.CurrentLevelData.Items)
+      {
+        if (item.Location.Equals(lname))
+        {
+          item.Collected = true;
+        }
       }
     }
   }
@@ -180,5 +226,14 @@ public partial class StatsManager : Node
   public static LevelEnemyData[] GetCurrentLevelEnemyData()
   {
     return [.. Instance.CurrentLevelData.EnemyInfo];
+  }
+
+  public static void OnReset()
+  {
+    foreach (HouseItem item in Instance.CurrentLevelData.Items)
+    {
+      item.Collected = false;
+    }
+    Instance.IsComplete = false;
   }
 }

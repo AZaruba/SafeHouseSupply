@@ -1,7 +1,7 @@
 {
-  "NextLevel": "Level2",
-  "Time": 70,
-  "AgentName": "Samuel Pescatore",
+  "NextLevel": "Level3",
+  "Time": 90,
+  "AgentName": "Betty Sneaksmith",
   "Agents": [
     {
       "StartPosition" : {
@@ -146,29 +146,35 @@
   ],
   "Items": [
     {
-      "Location" : "BANK",
-      "Name": "Passport",
-      "Description": "Agent is traveling internationally, we've procured a fake passport to hide his tracks.",
-      "Type": "Need"
-    },
-    {
-      "Location" : "TOOLS",
-      "Name": "Lockpicking Kit",
-      "Description": "Agent had to leave infiltration tools behind. Needs new tools for his next mission.",
+      "Location" : "PHARMACY",
+      "Name": "Potent Poison",
+      "Description": "Agent will be attending a gala attended by her next target. A discreet method of disposal is required.",
       "Type": "Need"
     },
     {
       "Location" : "TAILOR",
-      "Name": "Tactical Turtleneck",
-      "Description": "Make sure it's black, he has to be stealthy.",
+      "Name": "Ballgown",
+      "Description": "Agent needs to look her best, after all.",
       "Type": "Need"
     },
     {
-      "Location" : "GROCER",
-      "Name": "Spicy Chicken Sandwich",
-      "Description": "Agent has been surviving on field rations for a few weeks and desperately wants some flavor.",
+      "Location" : "BANK",
+      "Name": "Cash for tips",
+      "Description": "It'll be a grim scene, best to tip the staff extra.",
+      "Type": "Need"
+    },
+    {
+      "Location" : "TOOLS",
+      "Name": "Wrench set",
+      "Description": "The drip drip of the house's leaky faucet is quite annoying, according to the agent.",
+      "Type": "Want"
+    },
+    {
+      "Location" : "GIFTS",
+      "Name": "Gaudy necklace",
+      "Description": "Agent needs to look her best, after all.",
       "Type": "Want"
     }
   ],
-  "MissionDescription": "Agent is traveling internationally, we've procured a fake passport to hide his tracks. He also needs a lockpick and a black turtleneck for an infiltration mission.\nHe's been persisting on rations for weeks and desperately wants some flavor."
+  "MissionDescription": "Agent will be eliminating her next target at a gala. She needs to look her best and do her job discreetly, and is expected to tip generously. She's also a fan of accessorizing and hates the house's leaky faucet."
 }

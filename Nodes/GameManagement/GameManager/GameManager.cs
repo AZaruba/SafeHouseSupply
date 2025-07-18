@@ -52,7 +52,7 @@ public partial class GameManager : Node
     }
     else if (nextMode == GAME_MODE.GAMEPLAY)
     {
-
+      StatsManager.OnReset();
       MainGameMode mgm = ResourceLoader.Load<PackedScene>("res://Nodes/GameManagement/Modes/MainGame/MainGameMode.tscn").Instantiate<MainGameMode>();
       AddChild(mgm);
       GameModeLookup[GAME_MODE.GAMEPLAY] = mgm;
@@ -74,6 +74,7 @@ public partial class GameManager : Node
       GameModeLookup[currentMode].QueueFree();
       GameModeLookup[GameModeStack.Peek()].SetProcess(true);
       GameModeLookup[GameModeStack.Peek()].SetPhysicsProcess(true);
+      GameModeLookup[GameModeStack.Peek()].OnModeStart();
       GameModeLookup[GameModeStack.Peek()].Visible = true;
     }
   }

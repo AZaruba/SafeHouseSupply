@@ -137,6 +137,6 @@ public partial class PlayerCharacter : CharacterBody2D, IGameEntity
 
   private void DebugInfo()
   {
-    ScoreDisplay.WriteString(GetCollisionLayerValue(5).ToString());
+    
   }
 }

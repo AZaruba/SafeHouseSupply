@@ -33,6 +33,7 @@ tile_set = ExtResource("1_33jyf")
 
 [node name="SafeHouseDoor" parent="SafeHouse" instance=ExtResource("3_mftr2")]
 position = Vector2(240, 144)
+LocationName = 1
 
 [node name="SafeLabel" type="RichTextLabel" parent="SafeHouse"]
 offset_left = 224.0
@@ -62,6 +63,7 @@ scroll_active = false
 
 [node name="GiftShopDoor" parent="GiftShop" instance=ExtResource("3_mftr2")]
 position = Vector2(240, 240)
+LocationName = 6
 
 [node name="ToolShop" type="TileMapLayer" parent="."]
 modulate = Color(1, 0.752, 0.38, 1)
@@ -72,6 +74,7 @@ tile_set = ExtResource("1_33jyf")
 
 [node name="ToolShopDoor" parent="ToolShop" instance=ExtResource("3_mftr2")]
 position = Vector2(48, 208)
+LocationName = 5
 
 [node name="ToolLabel" type="RichTextLabel" parent="ToolShop"]
 offset_left = 32.0
@@ -102,6 +105,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="BankDoor" parent="Bank" instance=ExtResource("3_mftr2")]
 position = Vector2(40, 56)
+LocationName = 2
 
 [node name="Grocer" type="TileMapLayer" parent="."]
 modulate = Color(0.4368, 0.72576, 0.84, 1)
@@ -122,6 +126,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="GrocerDoor" parent="Grocer" instance=ExtResource("3_mftr2")]
 position = Vector2(424, 56)
+LocationName = 4
 
 [node name="Tailor" type="TileMapLayer" parent="."]
 modulate = Color(0.49573, 0.7555, 0.500715, 1)
@@ -141,6 +146,7 @@ scroll_active = false
 
 [node name="TailorDoor" parent="Tailor" instance=ExtResource("3_mftr2")]
 position = Vector2(248, 40)
+LocationName = 3
 
 [node name="Pharmacy" type="TileMapLayer" parent="."]
 modulate = Color(1, 0.626667, 0.6, 1)
@@ -160,3 +166,4 @@ scroll_active = false
 
 [node name="PharmacyDoor" parent="Pharmacy" instance=ExtResource("3_mftr2")]
 position = Vector2(400, 240)
+LocationName = 7

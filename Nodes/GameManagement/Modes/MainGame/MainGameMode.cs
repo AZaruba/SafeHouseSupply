@@ -46,7 +46,10 @@ public partial class MainGameMode : ModeManager
 
   public override void _Process(double delta)
   {
-
+    if (StatsManager.Instance.IsComplete)
+    {
+      EmitSignal(ModeManager.SignalName.PopGameMode);
+    }
   }
 
   public override void OnModeStart()
