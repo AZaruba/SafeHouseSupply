@@ -5,6 +5,7 @@ public partial class EnemyAgent : CharacterBody2D, IGameEntity
   [Export] public float ChaseVelocity;
   [Export] private AnimationPlayer AnimPlayer;
   [Export] private ShapeCast2D DetectPlayerCast;
+  [Export] private Area2D PlayerCollision;
   [Export] private float MaxVisionDistance;
 
   public EnemyData data;
@@ -114,15 +115,27 @@ public partial class EnemyAgent : CharacterBody2D, IGameEntity
 
   private bool IsPlayerColliding()
   {
-    for (int i = 0; i < GetSlideCollisionCount(); i++)
+    // for (int i = 0; i < GetSlideCollisionCount(); i++)
+    // {
+    //   KinematicCollision2D col = GetSlideCollision(i);
+    //   if (col.GetCollider().GetInstanceId() == PlayerCharacter.PlayerId)
+    //   {
+    //     SetPhysicsProcess(false);
+    //     return true;
+    //   }
+    // }
+    if (PlayerCollision.HasOverlappingBodies())
     {
-      KinematicCollision2D col = GetSlideCollision(i);
-      if (col.GetCollider().GetInstanceId() == PlayerCharacter.PlayerId)
+      foreach (Node2D obj in PlayerCollision.GetOverlappingBodies())
       {
-        SetPhysicsProcess(false);
-        return true;
+        if (obj.GetInstanceId() == PlayerCharacter.PlayerId)
+        {
+          SetPhysicsProcess(false);
+          return true;
+        }
       }
     }
+
     return false;
   }
 

@@ -7,6 +7,8 @@ public partial class MainGameMode : ModeManager
   public delegate void PlayerHitEventHandler();
   [Export] public PackedScene EnemyAgentScene;
 
+  private bool CheckingList = false;
+
   public static MainGameMode instance;
 
   public static void CallSignal(string SignalName)
@@ -48,7 +50,21 @@ public partial class MainGameMode : ModeManager
   {
     if (StatsManager.Instance.IsComplete)
     {
-      EmitSignal(ModeManager.SignalName.PopGameMode);
+      Visible = false;
+      EmitSignal(ModeManager.SignalName.PushGameMode, (int)GAME_MODE.RESULTS_SCREEN);
+    }
+    if (Input.IsActionJustPressed("CheckList"))
+    {
+      if (CheckingList)
+      {
+        Visible = true;
+        CheckingList = false;
+      }
+      else
+      {
+        Visible = false;
+        CheckingList = true;
+      }
     }
   }
 

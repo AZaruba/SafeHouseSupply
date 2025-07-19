@@ -11,6 +11,7 @@ public partial class GameManager : Node
   [Export] public PackedScene PackedIntroMode;
   [Export] public PackedScene PackedMainMenuMode;
   [Export] public PackedScene PackedInstructionsMode;
+  [Export] public PackedScene PackedResultsMode;
 
   Node ActiveGameModeNode;
 
@@ -33,7 +34,6 @@ public partial class GameManager : Node
   {
     GameModeLookup[GameModeStack.Peek()].SetProcess(false);
     GameModeLookup[GameModeStack.Peek()].SetPhysicsProcess(false);
-    GameModeLookup[GameModeStack.Peek()].Visible = false;
     if (nextMode == GAME_MODE.INSTRUCTIONS)
     {
       InstructionsMode mode = ResourceLoader.Load<PackedScene>("res://Nodes/GameManagement/Modes/Instructions/InstructionsMode.tscn").Instantiate<InstructionsMode>();
@@ -57,6 +57,14 @@ public partial class GameManager : Node
       AddChild(mgm);
       GameModeLookup[GAME_MODE.GAMEPLAY] = mgm;
       mgm.PopGameMode += OnPopGameMode;
+      mgm.PushGameMode += OnPushGameMode;
+    }
+    else if (nextMode == GAME_MODE.RESULTS_SCREEN)
+    {
+      ResultsMode rm = ResourceLoader.Load<PackedScene>("res://Nodes/GameManagement/Modes/Results/ResultsMode.tscn").Instantiate<ResultsMode>();
+      AddChild(rm);
+      GameModeLookup[GAME_MODE.RESULTS_SCREEN] = rm;
+      rm.PopGameMode += OnPopGameMode;
     }
     GameModeStack.Push(nextMode);
     GameModeLookup[nextMode].SetProcess(true);

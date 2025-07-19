@@ -65,7 +65,6 @@ public partial class Location : Node2D
     {
       IsPlayerInShop = true;
       CurrentLocation = this.LocationName;
-      GD.Print("Entering " + LocationName);
       EmitSignal(SignalName.ThisShopEntered, (int)LocationName);
       Sprite.Frame = 0;
     }

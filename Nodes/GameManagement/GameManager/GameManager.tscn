@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhvt5ub2ea0j0"]
+[gd_scene load_steps=7 format=3 uid="uid://bhvt5ub2ea0j0"]
 
 [ext_resource type="Script" uid="uid://bejiy4kur7tk2" path="res://Nodes/GameManagement/GameManager/GameManager.cs" id="1_he51w"]
 [ext_resource type="PackedScene" uid="uid://ck7sygayj4ckj" path="res://Nodes/GameManagement/Modes/Instructions/InstructionsMode.tscn" id="3_fmere"]
 [ext_resource type="PackedScene" uid="uid://dgovyuvb24cuo" path="res://Nodes/GameManagement/Modes/MainMenu/MainMenuMode.tscn" id="3_nydf1"]
 [ext_resource type="PackedScene" uid="uid://dthgvm3lacxsf" path="res://Nodes/GameManagement/Modes/MainGame/MainGameMode.tscn" id="4_fmere"]
 [ext_resource type="PackedScene" uid="uid://t5ndkquehdpc" path="res://Nodes/GameManagement/Modes/LevelIntro/LevelIntroMode.tscn" id="5_o1470"]
+[ext_resource type="PackedScene" uid="uid://ujolh07ulync" path="res://Nodes/GameManagement/Modes/Results/ResultsMode.tscn" id="6_6kr1x"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_he51w")
@@ -12,3 +13,4 @@ PackedMainGameMode = ExtResource("4_fmere")
 PackedIntroMode = ExtResource("5_o1470")
 PackedMainMenuMode = ExtResource("3_nydf1")
 PackedInstructionsMode = ExtResource("3_fmere")
+PackedResultsMode = ExtResource("6_6kr1x")

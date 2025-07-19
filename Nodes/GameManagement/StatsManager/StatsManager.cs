@@ -26,6 +26,14 @@ public partial class LevelData : GodotObject
   public Array<LevelEnemyData> EnemyInfo;
   public Array<HouseItem> Items;
 
+  public readonly int InventoryMax = 3;
+  public int CurrentInventory = 0;
+
+  public int TimesSpotted = 0;
+  public int WantsCollected = 0;
+
+  public int Wants;
+
   public string MissionDescription;
 
 }
@@ -58,10 +66,10 @@ public partial class StatsManager : Node
 
   public static void LoadLevel(string LevelName)
   {
-    GD.Print("attempting to load " + LevelName);
     if (!FileAccess.FileExists("res://Assets/LevelData/" + LevelName + ".json"))
     {
-      // 
+      // game is complete
+      
     }
     using FileAccess levelFile = FileAccess.Open("res://Assets/LevelData/" + LevelName + ".json", FileAccess.ModeFlags.Read);
     Json jsonResult = new();
@@ -166,6 +174,7 @@ public partial class StatsManager : Node
   {
     LevelData data = Instance.CurrentLevelData;
     string Output = "";
+    data.Wants = 0;
 
     Output += "Agent:" + data.AgentName;
     Output += "\n\nNeeds: ";
@@ -189,10 +198,18 @@ public partial class StatsManager : Node
   {
     foreach (HouseItem item in Instance.CurrentLevelData.Items)
     {
-      GD.Print(item.Name + " found: " + item.Collected);
       if (item.Type.Equals("Need") && !item.Collected)
       {
         return false;
+      }
+    }
+
+    // calc before counting score
+    foreach (HouseItem item in Instance.CurrentLevelData.Items)
+    {
+      if (item.Type.Equals("Want"))
+      {
+        Instance.CurrentLevelData.Wants++;
       }
     }
     return true;
@@ -202,10 +219,10 @@ public partial class StatsManager : Node
   {
     if (LocationID == (int)LocationName.SAFE_HOUSE)
     {
-      GD.Print("Completing");
+      Instance.CurrentLevelData.CurrentInventory = 0;
+      ScoreDisplay.WriteString("Items Held: " + Instance.CurrentLevelData.CurrentInventory + "/" + Instance.CurrentLevelData.InventoryMax);
       if (IsLevelComplete())
       {
-        GD.Print("Level Finished!");
         Instance.IsComplete = true;
         Instance.CurrentLevel = Instance.CurrentLevelData.NextLevel;
       }
@@ -215,9 +232,18 @@ public partial class StatsManager : Node
     {
       foreach (HouseItem item in Instance.CurrentLevelData.Items)
       {
-        if (item.Location.Equals(lname))
+        if (item.Location.Equals(lname) &&
+          item.Collected == false &&
+          Instance.CurrentLevelData.CurrentInventory < Instance.CurrentLevelData.InventoryMax)
         {
           item.Collected = true;
+          Instance.CurrentLevelData.CurrentInventory++;
+          ScoreDisplay.WriteString("Items Held: " + Instance.CurrentLevelData.CurrentInventory + "/" + Instance.CurrentLevelData.InventoryMax);
+
+          if (item.Type == "Want")
+          {
+            Instance.CurrentLevelData.WantsCollected++;
+          }
         }
       }
     }
@@ -234,6 +260,9 @@ public partial class StatsManager : Node
     {
       item.Collected = false;
     }
+    Instance.CurrentLevelData.CurrentInventory = 0;
+    Instance.CurrentLevelData.TimesSpotted = 0;
+    Instance.CurrentLevelData.WantsCollected = 0;
     Instance.IsComplete = false;
   }
 }

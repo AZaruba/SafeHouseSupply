@@ -154,6 +154,8 @@ public class EnemyChasing : EnemyState
 
     ed.ReturnPositions.Push(ed.Position.Round());
     base.Enter();
+
+    StatsManager.Instance.CurrentLevelData.TimesSpotted++;
   }
 
   public override void Exit()

@@ -4,8 +4,8 @@ public partial class Timer : Node2D, IGameEntity
 {
   [Export] private RichTextLabel DisplayLabel;
 
-  private float LevelTime;
-  private float CurrentTime;
+  public static float LevelTime;
+  public static float CurrentTime;
 
   public override void _Ready()
   {
