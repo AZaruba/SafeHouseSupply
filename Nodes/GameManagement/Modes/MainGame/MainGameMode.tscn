@@ -19,6 +19,7 @@ position = Vector2(240, 160)
 [node name="Environment" parent="." instance=ExtResource("2_4nwgi")]
 
 [node name="ScoreDisplay" parent="." instance=ExtResource("5_0ptf3")]
+text = "ITEMS HELD: 0/3"
 
 [node name="Timer" parent="." instance=ExtResource("6_q2tes")]
 position = Vector2(328, 0)

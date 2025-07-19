@@ -37,9 +37,9 @@ text = "MOVE - WASD OR ARROW KEYS
 
 OPEN DOOR - J OR Z
 
-HIDE - X OR J
+HIDE - K OR X
 
-PAUSE - P
+OPEN LIST - L OR C
 
 CONFIRM - ENTER OR SPACE"
 
@@ -48,7 +48,7 @@ z_index = 1
 offset_left = 232.0
 offset_top = 16.0
 offset_right = 464.0
-offset_bottom = 128.0
+offset_bottom = 248.0
 theme = ExtResource("3_vusll")
 theme_override_colors/default_color = Color(0.34902, 0.333333, 0.878431, 1)
 text = "HOW TO PLAY:
@@ -58,4 +58,8 @@ Visiting agents require some items.
 
 They also want other items to make them happy.
 
-Hide from enemy agents and get back to the safe house before the time runs out!"
+Hide from enemy agents and get back to the safe house before the time runs out!
+
+You can hide in a box or inside the shops, but if an enemy runs into you it's game over.
+
+You can only hold three items at a time, and the level will be completed once all needs are gathered."

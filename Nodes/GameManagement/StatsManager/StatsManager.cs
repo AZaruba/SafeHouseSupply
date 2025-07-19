@@ -220,7 +220,7 @@ public partial class StatsManager : Node
     if (LocationID == (int)LocationName.SAFE_HOUSE)
     {
       Instance.CurrentLevelData.CurrentInventory = 0;
-      ScoreDisplay.WriteString("Items Held: " + Instance.CurrentLevelData.CurrentInventory + "/" + Instance.CurrentLevelData.InventoryMax);
+      ScoreDisplay.WriteString("ITEMS HELD: " + Instance.CurrentLevelData.CurrentInventory + "/" + Instance.CurrentLevelData.InventoryMax);
       if (IsLevelComplete())
       {
         Instance.IsComplete = true;
@@ -238,7 +238,7 @@ public partial class StatsManager : Node
         {
           item.Collected = true;
           Instance.CurrentLevelData.CurrentInventory++;
-          ScoreDisplay.WriteString("Items Held: " + Instance.CurrentLevelData.CurrentInventory + "/" + Instance.CurrentLevelData.InventoryMax);
+          ScoreDisplay.WriteString("ITEMS HELD: " + Instance.CurrentLevelData.CurrentInventory + "/" + Instance.CurrentLevelData.InventoryMax);
 
           if (item.Type == "Want")
           {
