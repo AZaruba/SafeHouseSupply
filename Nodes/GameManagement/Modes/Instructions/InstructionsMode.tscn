@@ -18,9 +18,9 @@ tile_set = ExtResource("2_l3bqi")
 [node name="Title" type="RichTextLabel" parent="." index="1"]
 z_index = 1
 offset_left = 16.0
-offset_top = 168.0
+offset_top = 152.0
 offset_right = 80.0
-offset_bottom = 176.0
+offset_bottom = 160.0
 theme = ExtResource("3_vusll")
 theme_override_colors/default_color = Color(0.34902, 0.333333, 0.878431, 1)
 text = "CONTROLS"
@@ -28,7 +28,7 @@ text = "CONTROLS"
 [node name="Controls" type="RichTextLabel" parent="." index="2"]
 z_index = 1
 offset_left = 16.0
-offset_top = 184.0
+offset_top = 168.0
 offset_right = 216.0
 offset_bottom = 256.0
 theme = ExtResource("3_vusll")
@@ -41,7 +41,9 @@ HIDE IN BOX - K OR X
 
 OPEN LIST - L OR C
 
-CONFIRM - ENTER OR SPACE"
+CONFIRM - ENTER OR SPACE
+
+PAUSE - P"
 
 [node name="How To" type="RichTextLabel" parent="." index="3"]
 z_index = 1

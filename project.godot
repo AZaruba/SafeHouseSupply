@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="SafeHouseSupply"
+config/version="1.0"
 run/main_scene="uid://rqqugveoilb"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
@@ -21,10 +22,10 @@ StatsManager="*res://Nodes/GameManagement/StatsManager/StatsManager.tscn"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1088
+window/size/viewport_width=960
+window/size/viewport_height=544
 window/stretch/mode="canvas_items"
-window/stretch/scale=4.0
+window/stretch/scale=2.0
 window/stretch/scale_mode="integer"
 
 [dotnet]
