@@ -26,9 +26,11 @@ offset_right = 360.0
 offset_bottom = 152.0
 theme = ExtResource("2_tjvmm")
 theme_override_colors/default_color = Color(0.34902, 0.333333, 0.878431, 1)
-text = "A GAME FOR JOE WINTERGREEN'S JAMSGENDER CULT 
+text = "A GAME ABOUT THE PEOPLE WHO KEEP SPY AGENCIES RUNNING!
 
 BY ANDREW ZARUBA
 
-PRESS ENTER OR SPACE TO START!"
+PRESS ENTER OR SPACE TO START!
+
+PRESS ESC AT ANY TIME TO EXIT."
 horizontal_alignment = 1

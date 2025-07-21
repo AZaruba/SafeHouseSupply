@@ -1,6 +1,6 @@
 {
   "NextLevel": "Level2",
-  "Time": 70,
+  "Time": 80,
   "AgentName": "Samuel Pescatore",
   "Agents": [
     {
@@ -57,14 +57,14 @@
     },
     {
       "StartPosition" : {
-        "X": 208,
-        "Y": 200
+        "X": 320,
+        "Y": 24
       },
       "PatrolInstructions" : [
         {
           "TargetPosition": {
-            "X": 208,
-            "Y": 256
+            "X": 320,
+            "Y": 96
           },
           "FacingDirection": "Down",
           "Speed": 40,
@@ -72,8 +72,8 @@
         },
         {
           "TargetPosition": {
-            "X": 280,
-            "Y": 256
+            "X": 344,
+            "Y": 96
           },
           "FacingDirection": "Right",
           "Speed": 40,
@@ -81,8 +81,8 @@
         },
         {
           "TargetPosition": {
-            "X": 280,
-            "Y": 200
+            "X": 344,
+            "Y": 24
           },
           "FacingDirection": "Up",
           "Speed": 40,
@@ -90,8 +90,8 @@
         },
         {
           "TargetPosition": {
-            "X": 208,
-            "Y": 200
+            "X": 320,
+            "Y": 24
           },
           "FacingDirection": "Left",
           "Speed": 40,
@@ -101,23 +101,14 @@
     },
     {
       "StartPosition" : {
-        "X": 280,
-        "Y": 256
+        "X": 160,
+        "Y": 168
       },
       "PatrolInstructions" : [
         {
           "TargetPosition": {
-            "X": 280,
-            "Y": 200
-          },
-          "FacingDirection": "Up",
-          "Speed": 40,
-          "WaitTime": 0.5
-        },
-        {
-          "TargetPosition": {
-            "X": 208,
-            "Y": 200
+            "X": 16,
+            "Y": 168
           },
           "FacingDirection": "Left",
           "Speed": 40,
@@ -125,8 +116,8 @@
         },
         {
           "TargetPosition": {
-            "X": 208,
-            "Y": 256
+            "X": 16,
+            "Y": 240
           },
           "FacingDirection": "Down",
           "Speed": 40,
@@ -134,10 +125,19 @@
         },
         {
           "TargetPosition": {
-            "X": 280,
-            "Y": 256
+            "X": 160,
+            "Y": 240
           },
           "FacingDirection": "Right",
+          "Speed": 40,
+          "WaitTime": 0.5
+        },
+        {
+          "TargetPosition": {
+            "X": 160,
+            "Y": 168
+          },
+          "FacingDirection": "Up",
           "Speed": 40,
           "WaitTime": 0.5
         } 

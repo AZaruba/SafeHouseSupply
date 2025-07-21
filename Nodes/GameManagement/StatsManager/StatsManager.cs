@@ -52,6 +52,7 @@ public partial class StatsManager : Node
   };
 
   public static StatsManager Instance;
+  public static Array<int> Scores = [];
 
   public string CurrentLevel = "Level1";
   public LevelData CurrentLevelData;
@@ -223,6 +224,8 @@ public partial class StatsManager : Node
       ScoreDisplay.WriteString("ITEMS HELD: " + Instance.CurrentLevelData.CurrentInventory + "/" + Instance.CurrentLevelData.InventoryMax);
       if (IsLevelComplete())
       {
+
+        Scores.Add(ScoringUtils.CalculateScore());
         Instance.IsComplete = true;
         Instance.CurrentLevel = Instance.CurrentLevelData.NextLevel;
       }

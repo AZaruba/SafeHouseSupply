@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://drx6sxwcjebnm" path="res://Nodes/Timer/Timer.tscn" id="6_q2tes"]
 
 [node name="MainGameMode" type="Node2D"]
+process_mode = 1
 z_index = 10
 script = ExtResource("1_8neom")
 EnemyAgentScene = ExtResource("4_csa7x")

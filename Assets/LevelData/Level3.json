@@ -1,7 +1,7 @@
 {
-  "NextLevel": "Level3",
-  "Time": 100,
-  "AgentName": "Betty Sneaksmith",
+  "NextLevel": "FRS",
+  "Time": 120,
+  "AgentName": "[REDACTED]",
   "Agents": [
     {
       "StartPosition" : {
@@ -223,32 +223,6 @@
     },
     {
       "StartPosition" : {
-        "X": 400,
-        "Y": 160
-      },
-      "PatrolInstructions" : [
-        {
-          "TargetPosition": {
-            "X": 400,
-            "Y": 160
-          },
-          "FacingDirection": "Left",
-          "Speed": 40,
-          "WaitTime": 2
-        },
-        {
-          "TargetPosition": {
-            "X": 400,
-            "Y": 160
-          },
-          "FacingDirection": "Right",
-          "Speed": 40,
-          "WaitTime": 2
-        }
-      ]
-    },
-    {
-      "StartPosition" : {
         "X": 200,
         "Y": 24
       },
@@ -386,39 +360,68 @@
           "WaitTime": 0.5
         } 
       ]
+    },
+    {
+      "StartPosition" : {
+        "X": 400,
+        "Y": 96
+      },
+      "PatrolInstructions" : [
+        {
+          "TargetPosition": {
+            "X": 400,
+            "Y": 96
+          },
+          "FacingDirection": "Left",
+          "Speed": 40,
+          "WaitTime": 1
+        }
+      ]
     }
   ],
   "Items": [
     {
-      "Location" : "PHARMACY",
-      "Name": "Potent Poison",
-      "Description": "Agent will be attending a gala attended by her next target. A discreet method of disposal is required.",
+      "Location" : "GROCER",
+      "Name": "Ice Cream Cake",
+      "Description": "This agent refuses to come to headquarters to celebrate retirement. We'll celebrate anyway.",
       "Type": "Need"
     },
     {
-      "Location" : "TAILOR",
-      "Name": "Ballgown",
-      "Description": "Agent needs to look her best, after all.",
+      "Location" : "GROCER",
+      "Name": "Paper plates",
+      "Description": "What? You're going to eat the cake directly off the table?",
+      "Type": "Need"
+    },
+    {
+      "Location" : "GIFTS",
+      "Name": "Teddy Bear",
+      "Description": "Agent insisted on having a teddy bear. [REDACTED] has a very strict bedtime routine.",
       "Type": "Need"
     },
     {
       "Location" : "BANK",
-      "Name": "Cash for tips",
-      "Description": "It'll be a grim scene, best to tip the staff extra.",
+      "Name": "Safe Deposit Key",
+      "Description": "[Redacted] has been given a home to retire to after years of service. The key is at the bank, safely kept away",
       "Type": "Need"
     },
     {
-      "Location" : "TOOLS",
-      "Name": "Wrench set",
-      "Description": "The drip drip of the house's leaky faucet is quite annoying, according to the agent.",
+      "Location" : "TAILOR",
+      "Name": "Party Hats",
+      "Description": "It'll only be two of you there, but a party demands party hats",
       "Type": "Want"
     },
     {
-      "Location" : "GIFTS",
-      "Name": "Gaudy necklace",
-      "Description": "Agent needs to look her best, after all.",
+      "Location" : "TOOLS",
+      "Name": "Banner",
+      "Description": "Happy Retirement [REDACTED]! Has a nice ring to it, doens't it?",
+      "Type": "Want"
+    },
+    {
+      "Location" : "TOOLS",
+      "Name": "Markers",
+      "Description": "Happy Retirement [REDACTED]! Has a nice ring to it, doens't it?",
       "Type": "Want"
     }
   ],
-  "MissionDescription": "Agent will be eliminating her next target at a gala. She needs to look her best and do her job discreetly, and is expected to tip generously. She's also a fan of accessorizing and hates the house's leaky faucet."
+  "MissionDescription": "As far as you know, this agent does not exist. If they did, they'd be retiring today and be adamant about a SMALL celebration. If they were coming, you would likely have festivities planned."
 }

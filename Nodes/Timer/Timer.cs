@@ -18,7 +18,7 @@ public partial class Timer : Node2D, IGameEntity
     CurrentTime -= (float)delta;
     DisplayLabel.Text = Mathf.CeilToInt(CurrentTime).ToString();
 
-    if (CurrentTime < 0)
+    if (CurrentTime < 0 && !StatsManager.IsLevelComplete())
     {
       // Send Signal
       MainGameMode.CallSignal(MainGameMode.SignalName.PlayerHit);

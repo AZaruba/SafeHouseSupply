@@ -12,6 +12,7 @@ public partial class GameManager : Node
   [Export] public PackedScene PackedMainMenuMode;
   [Export] public PackedScene PackedInstructionsMode;
   [Export] public PackedScene PackedResultsMode;
+  [Export] public PackedScene PackedFinalResultsScreen;
 
   Node ActiveGameModeNode;
 
@@ -27,6 +28,18 @@ public partial class GameManager : Node
     GameModeStack.Push(GAME_MODE.MAIN_MENU);
     GameModeLookup[GAME_MODE.MAIN_MENU].SetProcess(true);
     GameModeLookup[GAME_MODE.MAIN_MENU].Visible = true;
+  }
+
+  public override void _Process(double delta)
+  {
+    if (Input.IsActionJustPressed("Quit"))
+    {
+      GetTree().Quit();
+    }
+    if (Input.IsActionJustPressed("Pause"))
+    {
+      GetTree().Paused = !GetTree().Paused;
+    }
   }
 
 // TODO Programmatically Handle the adding and removing of scenes (I think the game mode is the only one that requires us do this)
@@ -65,6 +78,14 @@ public partial class GameManager : Node
       AddChild(rm);
       GameModeLookup[GAME_MODE.RESULTS_SCREEN] = rm;
       rm.PopGameMode += OnPopGameMode;
+      rm.PushGameMode += OnPushGameMode;
+    }
+    else if (nextMode == GAME_MODE.FINAL_RESULTS_SCREEN)
+    {
+      FinalResultsScreen frs = ResourceLoader.Load<PackedScene>("res://Nodes/GameManagement/Modes/FinalResults/FinalResultsScreen.tscn").Instantiate<FinalResultsScreen>();
+      AddChild(frs);
+      GameModeLookup[GAME_MODE.FINAL_RESULTS_SCREEN] = frs;
+      // how to reset the whole game
     }
     GameModeStack.Push(nextMode);
     GameModeLookup[nextMode].SetProcess(true);

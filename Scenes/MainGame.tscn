@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://rqqugveoilb"]
+[gd_scene load_steps=3 format=3 uid="uid://rqqugveoilb"]
 
 [ext_resource type="PackedScene" uid="uid://bhvt5ub2ea0j0" path="res://Nodes/GameManagement/GameManager/GameManager.tscn" id="1_frf35"]
+[ext_resource type="PackedScene" uid="uid://6osoi55256yd" path="res://Nodes/GameManagement/Modes/FinalResults/FinalResultsScreen.tscn" id="2_frf35"]
 
 [node name="Main Game" type="Node2D"]
+process_mode = 3
 texture_filter = 1
 
 [node name="GameManager" parent="." instance=ExtResource("1_frf35")]
+PackedFinalResultsScreen = ExtResource("2_frf35")
